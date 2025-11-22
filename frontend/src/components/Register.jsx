@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import apiInstance from "../apiInstance";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useState } from 'react';
+import apiInstance from '../apiInstance';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const handleChange = (e) => {
@@ -18,18 +18,18 @@ const Register = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const response = await apiInstance.post("/auth/register", formData);
+    const response = await apiInstance.post('/auth/register', formData);
     if (response.data.success) {
       toast.success(response.data.message);
     } else {
       toast.error(response.data.message);
     }
     setFormData({
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
     });
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
@@ -43,21 +43,17 @@ const Register = () => {
             Create your Tech-Terms account
           </h1>
           <p className="text-lg text-slate-300 sm:text-xl">
-            Unlock the curated encyclopedia of technology, organize favorite
-            terminologies, and collaborate with a community of lifelong
-            learners.
+            Unlock the curated encyclopedia of technology, organize favorite terminologies, and
+            collaborate with a community of lifelong learners.
           </p>
           <div className="grid gap-4 text-lg text-slate-200 sm:grid-cols-2">
             {[
-              "Unlimited glossary bookmarks",
-              "Access to curated study paths",
-              "Personalized weekly digests",
-              "Early admin beta access",
+              'Unlimited glossary bookmarks',
+              'Access to curated study paths',
+              'Personalized weekly digests',
+              'Early admin beta access',
             ].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4"
-              >
+              <div key={item} className="rounded-2xl border border-slate-800 bg-slate-900/50 p-4">
                 <p>{item}</p>
               </div>
             ))}
@@ -65,16 +61,9 @@ const Register = () => {
         </div>
 
         <div className="rounded-3xl border border-slate-800 bg-slate-950/70 p-6 shadow-2xl backdrop-blur sm:p-10">
-          <form
-            autoComplete="off"
-            className="flex flex-col gap-6"
-            onSubmit={handleFormSubmit}
-          >
+          <form autoComplete="off" className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
             <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="name" className="text-lg font-semibold text-slate-200">
                 Full Name
               </label>
               <input
@@ -90,10 +79,7 @@ const Register = () => {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="email" className="text-lg font-semibold text-slate-200">
                 Email Address
               </label>
               <input
@@ -109,10 +95,7 @@ const Register = () => {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="password"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="password" className="text-lg font-semibold text-slate-200">
                 Password
               </label>
               <input
@@ -132,7 +115,7 @@ const Register = () => {
             </button>
 
             <p className="text-center text-lg text-slate-300">
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link
                 to="/login"
                 className="font-semibold text-indigo-300 underline-offset-4 transition hover:text-indigo-200 hover:underline"

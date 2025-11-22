@@ -1,17 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import apiInstance from "../apiInstance";
-import DashboardHeader from "../components/admin/DashboardHeader";
-import StatsCards from "../components/admin/StatsCards";
-import DashboardFilters from "../components/admin/DashboardFilters";
-import PostsGrid from "../components/admin/PostsGrid";
-import SpotlightSection from "../components/admin/SpotlightSection";
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import apiInstance from '../apiInstance';
+import DashboardHeader from '../components/admin/DashboardHeader';
+import StatsCards from '../components/admin/StatsCards';
+import DashboardFilters from '../components/admin/DashboardFilters';
+import PostsGrid from '../components/admin/PostsGrid';
+import SpotlightSection from '../components/admin/SpotlightSection';
 
 const initialFilters = {
-  search: "",
-  sortBy: "date",
-  sortOrder: "desc",
+  search: '',
+  sortBy: 'date',
+  sortOrder: 'desc',
   page: 1,
   limit: 6,
 };
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
       setLoading(true);
       setError(null);
       try {
-        const { data } = await apiInstance.get("/admin/dashboard", {
+        const { data } = await apiInstance.get('/admin/dashboard', {
           params: filters,
         });
         if (!ignore) {
@@ -40,13 +40,12 @@ const AdminDashboard = () => {
       } catch (err) {
         if (ignore) return;
         const status = err.response?.status;
-        const message =
-          err.response?.data?.message || "Unable to load dashboard data.";
+        const message = err.response?.data?.message || 'Unable to load dashboard data.';
         setError(message);
 
         if (status === 401 || status === 403) {
-          toast.info("Please login as an admin to continue.");
-          navigate("/login");
+          toast.info('Please login as an admin to continue.');
+          navigate('/login');
         } else {
           toast.error(message);
         }
@@ -71,7 +70,7 @@ const AdminDashboard = () => {
       ...filters,
       totalPages: dashboard?.filters?.totalPages || 1,
     }),
-    [filters, dashboard]
+    [filters, dashboard],
   );
 
   const handleSearch = (value) => {
@@ -93,7 +92,7 @@ const AdminDashboard = () => {
   const handleOrderToggle = () => {
     setFilters((prev) => ({
       ...prev,
-      sortOrder: prev.sortOrder === "asc" ? "desc" : "asc",
+      sortOrder: prev.sortOrder === 'asc' ? 'desc' : 'asc',
       page: 1,
     }));
   };
@@ -122,22 +121,21 @@ const AdminDashboard = () => {
   const handleDeletePost = async (postId) => {
     if (!postId) return;
     const confirmDelete = window.confirm(
-      "Remove this post from the platform? This action cannot be undone."
+      'Remove this post from the platform? This action cannot be undone.',
     );
     if (!confirmDelete) return;
 
     setDeletingId(postId);
     try {
       await apiInstance.delete(`/admin/posts/${postId}`);
-      toast.success("Post removed successfully.");
+      toast.success('Post removed successfully.');
       setFilters((prev) => ({ ...prev }));
     } catch (err) {
       const status = err.response?.status;
-      const message =
-        err.response?.data?.message || "Unable to remove the post.";
+      const message = err.response?.data?.message || 'Unable to remove the post.';
       if (status === 401 || status === 403) {
-        toast.info("Please login as an admin to continue.");
-        navigate("/login");
+        toast.info('Please login as an admin to continue.');
+        navigate('/login');
       } else {
         toast.error(message);
       }
@@ -153,9 +151,7 @@ const AdminDashboard = () => {
     return (
       <div className="rounded-3xl border border-slate-800 bg-slate-900/40 py-20 text-center">
         <div className="mx-auto h-14 w-14 animate-spin rounded-full border-4 border-indigo-500 border-t-transparent" />
-        <p className="mt-6 text-lg text-slate-300">
-          Preparing your control center...
-        </p>
+        <p className="mt-6 text-lg text-slate-300">Preparing your control center...</p>
       </div>
     );
   }
@@ -178,11 +174,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="space-y-10">
-      <DashboardHeader
-        stats={dashboard?.stats}
-        onRefresh={handleRefresh}
-        refreshing={refreshing}
-      />
+      <DashboardHeader stats={dashboard?.stats} onRefresh={handleRefresh} refreshing={refreshing} />
 
       <StatsCards stats={dashboard?.stats} />
 

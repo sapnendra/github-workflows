@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Footer from "../components/Footer";
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,27 +13,28 @@ const About = () => {
 
   useEffect(() => {
     // Hero section animation
-    const heroTitle = heroRef.current?.querySelector(".hero-title");
-    const heroSubtitle = heroRef.current?.querySelector(".hero-subtitle");
-    const heroDescription = heroRef.current?.querySelector(".hero-description");
+    const heroTitle = heroRef.current?.querySelector('.hero-title');
+    const heroSubtitle = heroRef.current?.querySelector('.hero-subtitle');
+    const heroDescription = heroRef.current?.querySelector('.hero-description');
 
     if (heroTitle && heroSubtitle && heroDescription) {
       const heroTl = gsap.timeline();
-      heroTl.from(heroTitle, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power3.out",
-      })
+      heroTl
+        .from(heroTitle, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power3.out',
+        })
         .from(
           heroSubtitle,
           {
             opacity: 0,
             y: 30,
             duration: 0.8,
-            ease: "power3.out",
+            ease: 'power3.out',
           },
-          "-=0.5"
+          '-=0.5',
         )
         .from(
           heroDescription,
@@ -41,35 +42,35 @@ const About = () => {
             opacity: 0,
             y: 20,
             duration: 0.8,
-            ease: "power3.out",
+            ease: 'power3.out',
           },
-          "-=0.4"
+          '-=0.4',
         );
     }
 
     // Mission section animation
-    const missionItems = missionRef.current?.querySelectorAll(".mission-item");
+    const missionItems = missionRef.current?.querySelectorAll('.mission-item');
     if (missionItems && missionItems.length > 0) {
       gsap.from(missionItems, {
         opacity: 0,
         y: 60,
         duration: 1,
         stagger: 0.2,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: missionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
       });
     }
 
     // Features section animation
-    const featureCards = featuresRef.current?.querySelectorAll(".feature-card");
+    const featureCards = featuresRef.current?.querySelectorAll('.feature-card');
     if (featureCards && featureCards.length > 0 && featuresRef.current) {
       // Set initial state
       gsap.set(featureCards, { opacity: 0, scale: 0.8 });
-      
+
       let hasAnimated = false;
       const animateCards = () => {
         if (!hasAnimated) {
@@ -79,14 +80,14 @@ const About = () => {
             scale: 1,
             duration: 0.8,
             stagger: 0.15,
-            ease: "back.out(1.7)",
+            ease: 'back.out(1.7)',
           });
         }
       };
-      
+
       ScrollTrigger.create({
         trigger: featuresRef.current,
-        start: "top 75%",
+        start: 'top 75%',
         onEnter: animateCards,
         once: true,
       });
@@ -101,39 +102,39 @@ const About = () => {
           }
         }
       };
-      
+
       // Check immediately and after a short delay to ensure DOM is ready
       setTimeout(checkView, 50);
     }
 
     // Founder section animation
-    const founderContents = founderRef.current?.querySelectorAll(".founder-content");
+    const founderContents = founderRef.current?.querySelectorAll('.founder-content');
     if (founderContents && founderContents.length > 0) {
       gsap.from(founderContents, {
         opacity: 0,
         x: -50,
         duration: 1,
-        ease: "power3.out",
+        ease: 'power3.out',
         scrollTrigger: {
           trigger: founderRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
       });
     }
 
-    const socialLinks = founderRef.current?.querySelectorAll(".social-link");
+    const socialLinks = founderRef.current?.querySelectorAll('.social-link');
     if (socialLinks && socialLinks.length > 0) {
       gsap.from(socialLinks, {
         opacity: 1,
         scale: 1,
         duration: 0.5,
         stagger: 0.1,
-        ease: "back.out(1.7)",
+        ease: 'back.out(1.7)',
         scrollTrigger: {
           trigger: founderRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none",
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
       });
     }
@@ -147,12 +148,7 @@ const About = () => {
   const features = [
     {
       icon: (
-        <svg
-          className="h-12 w-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -161,18 +157,13 @@ const About = () => {
           />
         </svg>
       ),
-      title: "Comprehensive Tech Terms",
+      title: 'Comprehensive Tech Terms',
       description:
-        "Access a vast collection of technology terminology covering all domains from programming to cloud computing.",
+        'Access a vast collection of technology terminology covering all domains from programming to cloud computing.',
     },
     {
       icon: (
-        <svg
-          className="h-12 w-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -181,18 +172,13 @@ const About = () => {
           />
         </svg>
       ),
-      title: "Interview Questions",
+      title: 'Interview Questions',
       description:
-        "Prepare for your technical interviews with curated questions and answers that help you excel in your career.",
+        'Prepare for your technical interviews with curated questions and answers that help you excel in your career.',
     },
     {
       icon: (
-        <svg
-          className="h-12 w-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -201,18 +187,13 @@ const About = () => {
           />
         </svg>
       ),
-      title: "Learning Resources",
+      title: 'Learning Resources',
       description:
-        "Explore detailed explanations and examples that make complex technical concepts easy to understand.",
+        'Explore detailed explanations and examples that make complex technical concepts easy to understand.',
     },
     {
       icon: (
-        <svg
-          className="h-12 w-12"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -221,9 +202,9 @@ const About = () => {
           />
         </svg>
       ),
-      title: "Community Driven",
+      title: 'Community Driven',
       description:
-        "Join a community of passionate learners and developers sharing knowledge and helping each other grow.",
+        'Join a community of passionate learners and developers sharing knowledge and helping each other grow.',
     },
   ];
 
@@ -231,10 +212,7 @@ const About = () => {
     <>
       <div className="min-h-screen bg-slate-950">
         {/* Hero Section */}
-        <section
-          ref={heroRef}
-          className="relative overflow-hidden py-20 sm:py-32"
-        >
+        <section ref={heroRef} className="relative overflow-hidden py-20 sm:py-32">
           <div className="absolute border border-slate-600 rounded-3xl inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-transparent" />
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -249,10 +227,9 @@ const About = () => {
                 </span>
               </h1>
               <p className="hero-description mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Tech-Terms is your comprehensive platform for all technology
-                terminology, interview questions, and learning resources. We
-                bring together everything passionate learners need in one
-                convenient place.
+                Tech-Terms is your comprehensive platform for all technology terminology, interview
+                questions, and learning resources. We bring together everything passionate learners
+                need in one convenient place.
               </p>
             </div>
           </div>
@@ -288,15 +265,12 @@ const About = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Centralized Learning Hub
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white">Centralized Learning Hub</h3>
                 </div>
                 <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                  Our main aim is to provide all tech-terms queries of every
-                  passionate learner in one place. Whether you're preparing for
-                  interviews or exploring new technologies, Tech-Terms is your
-                  go-to resource.
+                  Our main aim is to provide all tech-terms queries of every passionate learner in
+                  one place. Whether you're preparing for interviews or exploring new technologies,
+                  Tech-Terms is your go-to resource.
                 </p>
               </div>
 
@@ -317,14 +291,12 @@ const About = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Accelerate Development
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white">Accelerate Development</h3>
                 </div>
                 <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                  We help fellow developers accelerate their development journey
-                  and excel in interviews. Our curated content covers everything
-                  from basic terminology to advanced interview questions.
+                  We help fellow developers accelerate their development journey and excel in
+                  interviews. Our curated content covers everything from basic terminology to
+                  advanced interview questions.
                 </p>
               </div>
             </div>
@@ -352,9 +324,7 @@ const About = () => {
                   <div className="text-indigo-400 transition group-hover:scale-110">
                     {feature.icon}
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-white">
-                    {feature.title}
-                  </h3>
+                  <h3 className="mt-6 text-xl font-bold text-white">{feature.title}</h3>
                   <p className="mt-4 text-slate-300">{feature.description}</p>
                 </div>
               ))}
@@ -378,18 +348,16 @@ const About = () => {
                     Graduated Engineer | Passionate Developer
                   </p>
                   <p className="mt-6 text-lg leading-relaxed text-slate-300">
-                    Sapnendra Jaiswal is a graduated engineer with a deep
-                    passion for development. His vision is to make fellow
-                    developers accelerate into development and excel in their
-                    interviews. Tech-Terms was born from this passion to create
-                    a centralized platform where every tech enthusiast can find
-                    the resources they need to grow and succeed.
+                    Sapnendra Jaiswal is a graduated engineer with a deep passion for development.
+                    His vision is to make fellow developers accelerate into development and excel in
+                    their interviews. Tech-Terms was born from this passion to create a centralized
+                    platform where every tech enthusiast can find the resources they need to grow
+                    and succeed.
                   </p>
                   <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                    With a commitment to helping the developer community,
-                    Sapnendra has built Tech-Terms as a comprehensive resource
-                    for interview questions, tech terminology, and learning
-                    materials—all in one convenient place.
+                    With a commitment to helping the developer community, Sapnendra has built
+                    Tech-Terms as a comprehensive resource for interview questions, tech
+                    terminology, and learning materials—all in one convenient place.
                   </p>
                 </div>
 

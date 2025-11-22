@@ -1,18 +1,18 @@
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Guidelines from "./pages/Guidelines";
-import Edit from "./pages/Edit";
-import Navbar from "./components/Navbar";
-import CreatePost from "./components/CreatePost";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Profile from "./pages/Profile";
-import Footer from "./components/Footer";
-import AdminDashboard from "./pages/AdminDashboard";
+import Login from './components/Login';
+import Register from './components/Register';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Guidelines from './pages/Guidelines';
+import Edit from './pages/Edit';
+import Navbar from './components/Navbar';
+import CreatePost from './components/CreatePost';
+import { Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Profile from './pages/Profile';
+import Footer from './components/Footer';
+import AdminDashboard from './pages/AdminDashboard';
 
 const App = () => {
   return (

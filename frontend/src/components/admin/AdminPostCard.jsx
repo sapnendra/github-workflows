@@ -1,11 +1,11 @@
 const AdminPostCard = ({ post, onDelete, deleting }) => {
   const publishedDate = post.publishedOn
     ? new Date(post.publishedOn).toLocaleDateString(undefined, {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
       })
-    : "Unknown";
+    : 'Unknown';
 
   return (
     <article className="flex h-full flex-col justify-between rounded-3xl border border-slate-800 bg-slate-950/40 p-6 shadow-xl shadow-slate-950/40">
@@ -16,9 +16,7 @@ const AdminPostCard = ({ post, onDelete, deleting }) => {
             Likes {post.likesCount ?? 0}
           </span>
         </div>
-        <h3 className="mt-4 text-2xl font-semibold text-white">
-          {post.title}
-        </h3>
+        <h3 className="mt-4 text-2xl font-semibold text-white">{post.title}</h3>
         <p className="mt-3 text-base text-slate-300">{post.contentPreview}</p>
       </div>
 
@@ -36,7 +34,7 @@ const AdminPostCard = ({ post, onDelete, deleting }) => {
             disabled={deleting}
             className="inline-flex items-center justify-center gap-2 rounded-2xl border border-red-500/60 bg-red-500/10 px-4 py-3 text-sm font-semibold text-red-100 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {deleting ? "Removing..." : "Remove post"}
+            {deleting ? 'Removing...' : 'Remove post'}
             {deleting ? (
               <span className="h-4 w-4 animate-spin rounded-full border-2 border-red-200 border-t-transparent" />
             ) : (
@@ -68,4 +66,3 @@ const AdminPostCard = ({ post, onDelete, deleting }) => {
 };
 
 export default AdminPostCard;
-

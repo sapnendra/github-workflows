@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useState, useCallback } from "react";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -10,14 +10,14 @@ const Home = () => {
   const [error, setError] = useState(null);
   const [currentUserId, setCurrentUserId] = useState(null);
   const [likingId, setLikingId] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
 
   useEffect(() => {
     const fetchTerms = async () => {
       try {
-        const response = await apiInstance.get("/post/all");
+        const response = await apiInstance.get('/post/all');
         setTerms(response.data.post || []);
       } catch (err) {
         setError(err.response?.data?.message || err.message);
@@ -31,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     const fetchAuthState = async () => {
       try {
-        const { data } = await apiInstance.get("/auth/is-auth");
+        const { data } = await apiInstance.get('/auth/is-auth');
         if (data?.success) {
           setCurrentUserId(data.user?._id || null);
         } else {
@@ -44,26 +44,27 @@ const Home = () => {
     fetchAuthState();
   }, []);
 
-  const handleLikeToggle = useCallback(async (postId) => {
-    setLikingId(postId);
-    try {
-      const { data } = await apiInstance.get(`/post/like/${postId}`);
-      if (data?.post) {
-        setTerms((prev) =>
-          prev.map((item) => (item._id === data.post._id ? data.post : item))
-        );
+  const handleLikeToggle = useCallback(
+    async (postId) => {
+      setLikingId(postId);
+      try {
+        const { data } = await apiInstance.get(`/post/like/${postId}`);
+        if (data?.post) {
+          setTerms((prev) => prev.map((item) => (item._id === data.post._id ? data.post : item)));
+        }
+      } catch (err) {
+        if (err.response?.status === 401) {
+          toast.info('Please login to like posts.');
+          navigate('/login');
+        } else {
+          toast.error(err.response?.data?.message || 'Unable to update like.');
+        }
+      } finally {
+        setLikingId(null);
       }
-    } catch (err) {
-      if (err.response?.status === 401) {
-        toast.info("Please login to like posts.");
-        navigate("/login");
-      } else {
-        toast.error(err.response?.data?.message || "Unable to update like.");
-      }
-    } finally {
-      setLikingId(null);
-    }
-  }, [navigate]);
+    },
+    [navigate],
+  );
 
   const filteredAndPaginatedPosts = useMemo(() => {
     // Filter posts by search query
@@ -114,7 +115,7 @@ const Home = () => {
         <div className="rounded-3xl border border-slate-800 bg-slate-900/40 px-6 py-12 text-center text-slate-300">
           {searchQuery
             ? `No posts found matching "${searchQuery}".`
-            : "No posts yet. Check back soon for new Tech-Terms insights."}
+            : 'No posts yet. Check back soon for new Tech-Terms insights.'}
         </div>
       );
     }
@@ -127,9 +128,7 @@ const Home = () => {
             const isLiked = currentUserId
               ? term.likes?.some((like) => {
                   // Handle both ObjectId objects and strings
-                  const likeId = like?._id
-                    ? like._id.toString()
-                    : like?.toString();
+                  const likeId = like?._id ? like._id.toString() : like?.toString();
                   return likeId === currentUserId.toString();
                 })
               : false;
@@ -142,26 +141,22 @@ const Home = () => {
                 <div className="flex items-center justify-between text-sm text-slate-400">
                   <span>
                     {new Date(term.date).toLocaleDateString(undefined, {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
+                      day: 'numeric',
+                      month: 'short',
+                      year: 'numeric',
                     })}
                   </span>
                   <span className="rounded-full border border-slate-800 px-3 py-1 text-xs uppercase tracking-widest text-slate-300">
                     Tech-Terms
                   </span>
                 </div>
-                <h2 className="mt-4 text-2xl font-bold text-white">
-                  {term.title}
-                </h2>
-                <p className="mt-3 flex-1 text-lg text-slate-300">
-                  {term.content}
-                </p>
+                <h2 className="mt-4 text-2xl font-bold text-white">{term.title}</h2>
+                <p className="mt-3 flex-1 text-lg text-slate-300">{term.content}</p>
                 <div className="mt-4">
                   <span className="text-sm text-slate-400">
-                    Created by:{" "}
+                    Created by:{' '}
                     <span className="font-semibold text-indigo-400">
-                      {term.user?.name || "Unknown"}
+                      {term.user?.name || 'Unknown'}
                     </span>
                   </span>
                 </div>
@@ -175,10 +170,10 @@ const Home = () => {
                     disabled={likingId === term._id}
                     className="rounded-full border border-slate-600 px-3 py-1 text-sm tracking- font-bold cursor-pointer"
                   >
-                    {isLiked ? "Unlike:" : "Like Me:"}
+                    {isLiked ? 'Unlike:' : 'Like Me:'}
                   </span>
                   <span className="rounded-full border border-slate-600 px-3 py-1 text-sm tracking- font-bold text-red-500">
-                    {likesCount} {likesCount === 1 ? "like" : "likes"}
+                    {likesCount} {likesCount === 1 ? 'like' : 'likes'}
                   </span>
                 </button>
               </article>
@@ -203,9 +198,7 @@ const Home = () => {
             <button
               type="button"
               onClick={() =>
-                setCurrentPage((prev) =>
-                  Math.min(filteredAndPaginatedPosts.totalPages, prev + 1)
-                )
+                setCurrentPage((prev) => Math.min(filteredAndPaginatedPosts.totalPages, prev + 1))
               }
               disabled={currentPage === filteredAndPaginatedPosts.totalPages}
               className="rounded-xl border border-slate-700 bg-slate-900/50 px-4 py-2 text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
@@ -238,8 +231,8 @@ const Home = () => {
             Discover the latest definitions and insights
           </h1>
           <p className="mt-4 text-lg text-slate-300">
-            Browse community-curated entries, deepen your knowledge, and show
-            appreciation with a quick like.
+            Browse community-curated entries, deepen your knowledge, and show appreciation with a
+            quick like.
           </p>
         </div>
 

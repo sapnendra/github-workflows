@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
 
 const links = [
-  { label: "Home", to: "/" },
-  { label: "About", to: "/about" },
-  { label: "Guidelines", to: "/guidelines" },
-  { label: "Contact", to: "/contact" },
+  { label: 'Home', to: '/' },
+  { label: 'About', to: '/about' },
+  { label: 'Guidelines', to: '/guidelines' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 export default function Navbar() {
@@ -19,7 +19,7 @@ export default function Navbar() {
 
   const checkAuth = async () => {
     try {
-      const response = await apiInstance.get("/auth/is-auth");
+      const response = await apiInstance.get('/auth/is-auth');
       if (response.data.success) {
         setIsAuthenticated(true);
         setUser(response.data.user);
@@ -28,7 +28,7 @@ export default function Navbar() {
         setUser(null);
       }
     } catch (error) {
-      console.error("Auth check error:", error);
+      console.error('Auth check error:', error);
       setIsAuthenticated(false);
       setUser(null);
     }
@@ -37,21 +37,21 @@ export default function Navbar() {
   useEffect(() => {
     checkAuth();
     const handleAuthChange = () => checkAuth();
-    window.addEventListener("auth-change", handleAuthChange);
-    return () => window.removeEventListener("auth-change", handleAuthChange);
+    window.addEventListener('auth-change', handleAuthChange);
+    return () => window.removeEventListener('auth-change', handleAuthChange);
   }, []);
 
   const handleLogout = async () => {
     try {
-      await apiInstance.post("/auth/logout");
+      await apiInstance.post('/auth/logout');
       setIsAuthenticated(false);
       setUser(null);
-      window.dispatchEvent(new Event("auth-change"));
-      toast.success("Logged out successfully");
-      navigate("/");
+      window.dispatchEvent(new Event('auth-change'));
+      toast.success('Logged out successfully');
+      navigate('/');
     } catch (error) {
-      console.error("Logout error:", error);
-      toast.error("Failed to logout");
+      console.error('Logout error:', error);
+      toast.error('Failed to logout');
     }
   };
 
@@ -59,7 +59,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur supports-backdrop-blur:bg-slate-950/70">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
         <Link to="/" className="text-3xl font-black tracking-tight text-white">
-          <span className="text-indigo-500 uppercase">Tech-Terms</span>{" "}
+          <span className="text-indigo-500 uppercase">Tech-Terms</span>{' '}
           <span className="text-slate-500 text-lg lowecase">by </span>
           <span className="text-red-400 text-lg uppercase">Sapnendra</span>
         </Link>
@@ -72,9 +72,7 @@ export default function Navbar() {
           onClick={() => setOpen((prev) => !prev)}
         >
           <svg
-            className={`h-6 w-6 transition ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
+            className={`h-6 w-6 transition ${open ? 'opacity-0' : 'opacity-100'}`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -87,9 +85,7 @@ export default function Navbar() {
             <line x1="3" y1="18" x2="21" y2="18" />
           </svg>
           <svg
-            className={`absolute h-6 w-6 transition ${
-              open ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute h-6 w-6 transition ${open ? 'opacity-100' : 'opacity-0'}`}
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -123,16 +119,13 @@ export default function Navbar() {
               >
                 <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-indigo-500/50 bg-linear-to-br from-indigo-400 to-indigo-600">
                   <div className="flex h-full w-full items-center justify-center text-lg font-bold text-white">
-                    {user?.name?.charAt(0).toUpperCase() || "U"}
+                    {user?.name?.charAt(0).toUpperCase() || 'U'}
                   </div>
                 </div>
               </button>
               {profileOpen && (
                 <>
-                  <div
-                    className="fixed inset-0 z-40"
-                    onClick={() => setProfileOpen(false)}
-                  />
+                  <div className="fixed inset-0 z-40" onClick={() => setProfileOpen(false)} />
                   <div className="absolute right-0 top-14 z-50 w-56 rounded-2xl border border-slate-700 bg-slate-900/95 p-2 shadow-2xl backdrop-blur">
                     <Link
                       to="/profile"
@@ -183,7 +176,7 @@ export default function Navbar() {
 
       <div
         className={`lg:hidden ${
-          open ? "block" : "hidden"
+          open ? 'block' : 'hidden'
         } border-t border-slate-800 bg-slate-950/95`}
       >
         <nav className="space-y-2 px-4 py-6 text-xl font-semibold text-slate-100 sm:px-6">
@@ -202,12 +195,10 @@ export default function Navbar() {
               <div className="flex items-center gap-3 rounded-2xl border border-slate-700 bg-slate-900/50 px-4 py-3">
                 <div className="h-10 w-10 overflow-hidden rounded-full border-2 border-indigo-500/50 bg-linear-to-br from-indigo-400 to-indigo-600">
                   <div className="flex h-full w-full items-center justify-center text-lg font-bold text-white">
-                    {user?.name?.charAt(0).toUpperCase() || "U"}
+                    {user?.name?.charAt(0).toUpperCase() || 'U'}
                   </div>
                 </div>
-                <span className="text-base font-medium text-slate-200">
-                  {user?.name || "User"}
-                </span>
+                <span className="text-base font-medium text-slate-200">{user?.name || 'User'}</span>
               </div>
               <Link
                 to="/profile"

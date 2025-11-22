@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
     isAdmin: false,
   });
 
@@ -16,7 +16,7 @@ const Login = () => {
 
     setFormData({
       ...formData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     });
   };
 
@@ -24,27 +24,27 @@ const Login = () => {
     e.preventDefault();
 
     if (!formData.isAdmin) {
-      const response = await apiInstance.post("/auth/login", formData);
+      const response = await apiInstance.post('/auth/login', formData);
       if (response.data.success) {
         toast.success(response.data.message);
-        window.dispatchEvent(new Event("auth-change"));
-        navigate("/");
+        window.dispatchEvent(new Event('auth-change'));
+        navigate('/');
       } else {
         toast.error(response.data.message);
       }
     } else {
-      const response = await apiInstance.post("/auth/admin/login", formData);
+      const response = await apiInstance.post('/auth/admin/login', formData);
       if (response.data.success) {
         toast.success(response.data.message);
-        window.dispatchEvent(new Event("auth-change"));
-        navigate("/admin/dashboard");
+        window.dispatchEvent(new Event('auth-change'));
+        navigate('/admin/dashboard');
       } else {
         toast.error(response.data.message);
       }
     }
     setFormData({
-      email: "",
-      password: "",
+      email: '',
+      password: '',
       isAdmin: false,
     });
   };
@@ -60,7 +60,8 @@ const Login = () => {
             Welcome back to Tech-Terms
           </h1>
           <p className="text-lg text-slate-300 sm:text-xl">
-            Sign in to continue exploring curated tech terminology, manage your saved lists, and stay updated with the latest definitions.
+            Sign in to continue exploring curated tech terminology, manage your saved lists, and
+            stay updated with the latest definitions.
           </p>
           <ul className="space-y-3 text-lg text-slate-200">
             <li className="flex items-center gap-3">
@@ -85,16 +86,9 @@ const Login = () => {
         </div>
 
         <div className="rounded-2xl border border-slate-800 bg-slate-800/60 p-6 shadow-xl backdrop-blur sm:p-8">
-          <form
-            autoComplete="off"
-            className="flex flex-col gap-6"
-            onSubmit={handleFormSubmit}
-          >
+          <form autoComplete="off" className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
             <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="email" className="text-lg font-semibold text-slate-200">
                 Email Address
               </label>
               <input
@@ -110,10 +104,7 @@ const Login = () => {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="password"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="password" className="text-lg font-semibold text-slate-200">
                 Password
               </label>
               <input
@@ -143,9 +134,7 @@ const Login = () => {
                 />
                 Login as admin
               </label>
-              <p className="text-sm text-slate-400">
-                Toggle to access the admin dashboard.
-              </p>
+              <p className="text-sm text-slate-400">Toggle to access the admin dashboard.</p>
             </div>
 
             <button className="w-full rounded-xl bg-indigo-500 px-6 py-3 text-2xl font-semibold text-white transition hover:bg-indigo-400 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-indigo-300">
@@ -153,7 +142,7 @@ const Login = () => {
             </button>
 
             <p className="text-center text-lg text-slate-300">
-              Don't have an account?{" "}
+              Don't have an account?{' '}
               <Link
                 to="/register"
                 className="font-semibold text-indigo-300 underline-offset-4 transition hover:text-indigo-200 hover:underline"

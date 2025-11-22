@@ -1,14 +1,8 @@
 const Guidelines = () => {
-
   const rules = [
     {
       icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -17,18 +11,13 @@ const Guidelines = () => {
           />
         </svg>
       ),
-      title: "Title Requirements",
+      title: 'Title Requirements',
       description:
         "Your title must be clear, descriptive, and unique. Use specific tech terms like 'React Hooks', 'API Gateway', or 'Microservices'. Duplicate titles are not allowed.",
     },
     {
       icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -37,18 +26,13 @@ const Guidelines = () => {
           />
         </svg>
       ),
-      title: "Content Length",
+      title: 'Content Length',
       description:
-        "Your content must be at least 200 characters long. Provide detailed explanations, examples, and context to help others understand the tech term thoroughly.",
+        'Your content must be at least 200 characters long. Provide detailed explanations, examples, and context to help others understand the tech term thoroughly.',
     },
     {
       icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -57,18 +41,13 @@ const Guidelines = () => {
           />
         </svg>
       ),
-      title: "Technical Accuracy",
+      title: 'Technical Accuracy',
       description:
-        "Ensure all information is accurate and up-to-date. Include relevant examples, use cases, and practical applications of the tech term.",
+        'Ensure all information is accurate and up-to-date. Include relevant examples, use cases, and practical applications of the tech term.',
     },
     {
       icon: (
-        <svg
-          className="h-8 w-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -77,36 +56,36 @@ const Guidelines = () => {
           />
         </svg>
       ),
-      title: "Original Content",
+      title: 'Original Content',
       description:
-        "Write original content in your own words. Avoid plagiarism and ensure your post adds value to the community. Cite sources when necessary.",
+        'Write original content in your own words. Avoid plagiarism and ensure your post adds value to the community. Cite sources when necessary.',
     },
   ];
 
   const howToSteps = [
     {
-      number: "01",
-      title: "Choose a Tech Term",
+      number: '01',
+      title: 'Choose a Tech Term',
       description:
         "Select a technology term, concept, or topic that you want to explain. Make sure it's relevant to software development, programming, or technology in general.",
     },
     {
-      number: "02",
-      title: "Write a Clear Title",
+      number: '02',
+      title: 'Write a Clear Title',
       description:
         "Create a descriptive title that clearly identifies the tech term. Use proper capitalization and avoid generic terms. Examples: 'React Hooks', 'RESTful API', 'Docker Containers'.",
     },
     {
-      number: "03",
-      title: "Provide Detailed Content",
+      number: '03',
+      title: 'Provide Detailed Content',
       description:
-        "Write a comprehensive explanation (minimum 200 characters) that includes: what the term means, how it works, when to use it, code examples if applicable, and real-world use cases.",
+        'Write a comprehensive explanation (minimum 200 characters) that includes: what the term means, how it works, when to use it, code examples if applicable, and real-world use cases.',
     },
     {
-      number: "04",
-      title: "Review and Submit",
+      number: '04',
+      title: 'Review and Submit',
       description:
-        "Review your post for accuracy, clarity, and completeness. Ensure it follows all guidelines, then submit. Your post will be visible to the community once created.",
+        'Review your post for accuracy, clarity, and completeness. Ensure it follows all guidelines, then submit. Your post will be visible to the community once created.',
     },
   ];
 
@@ -129,8 +108,8 @@ const Guidelines = () => {
                 </span>
               </h1>
               <p className="hero-description mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Follow these guidelines to create informative and valuable tech term
-                posts that help the community learn and grow together.
+                Follow these guidelines to create informative and valuable tech term posts that help
+                the community learn and grow together.
               </p>
             </div>
           </div>
@@ -143,9 +122,7 @@ const Guidelines = () => {
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 Purpose of Tech-Terms
               </h2>
-              <p className="mt-4 text-lg text-slate-400">
-                Understanding why we're here
-              </p>
+              <p className="mt-4 text-lg text-slate-400">Understanding why we're here</p>
             </div>
 
             <div className="mt-16 grid gap-8 lg:grid-cols-2">
@@ -166,15 +143,13 @@ const Guidelines = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Centralized Learning Hub
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white">Centralized Learning Hub</h3>
                 </div>
                 <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                  Tech-Terms is a comprehensive platform designed to provide all
-                  technology terminology, interview questions, and learning resources
-                  in one convenient place. Our goal is to help developers accelerate
-                  their development journey and excel in technical interviews.
+                  Tech-Terms is a comprehensive platform designed to provide all technology
+                  terminology, interview questions, and learning resources in one convenient place.
+                  Our goal is to help developers accelerate their development journey and excel in
+                  technical interviews.
                 </p>
               </div>
 
@@ -195,15 +170,13 @@ const Guidelines = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white">
-                    Community-Driven Knowledge
-                  </h3>
+                  <h3 className="text-2xl font-bold text-white">Community-Driven Knowledge</h3>
                 </div>
                 <p className="mt-4 text-lg leading-relaxed text-slate-300">
-                  We believe in the power of community. By sharing your knowledge
-                  through well-written posts, you're helping fellow developers learn,
-                  grow, and succeed. Every post contributes to building a comprehensive
-                  resource for the entire tech community.
+                  We believe in the power of community. By sharing your knowledge through
+                  well-written posts, you're helping fellow developers learn, grow, and succeed.
+                  Every post contributes to building a comprehensive resource for the entire tech
+                  community.
                 </p>
               </div>
             </div>
@@ -231,9 +204,7 @@ const Guidelines = () => {
                   <div className="text-indigo-400 transition group-hover:scale-110">
                     {rule.icon}
                   </div>
-                  <h3 className="mt-6 text-xl font-bold text-white">
-                    {rule.title}
-                  </h3>
+                  <h3 className="mt-6 text-xl font-bold text-white">{rule.title}</h3>
                   <p className="mt-4 text-slate-300">{rule.description}</p>
                 </div>
               ))}
@@ -261,14 +232,10 @@ const Guidelines = () => {
                 >
                   <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
                     <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 border border-indigo-500/40">
-                      <span className="text-2xl font-bold text-indigo-300">
-                        {step.number}
-                      </span>
+                      <span className="text-2xl font-bold text-indigo-300">{step.number}</span>
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white">
-                        {step.title}
-                      </h3>
+                      <h3 className="text-2xl font-bold text-white">{step.title}</h3>
                       <p className="mt-3 text-lg leading-relaxed text-slate-300">
                         {step.description}
                       </p>
@@ -314,9 +281,9 @@ const Guidelines = () => {
                     <h3 className="text-xl font-bold text-white">Title</h3>
                   </div>
                   <p className="mt-4 text-slate-300">
-                    <span className="font-semibold text-indigo-400">No specific limit</span>
-                    , but should be clear and descriptive. Aim for 5-10 words that
-                    accurately describe the tech term. Duplicate titles are not allowed.
+                    <span className="font-semibold text-indigo-400">No specific limit</span>, but
+                    should be clear and descriptive. Aim for 5-10 words that accurately describe the
+                    tech term. Duplicate titles are not allowed.
                   </p>
                 </div>
 
@@ -340,9 +307,9 @@ const Guidelines = () => {
                     <h3 className="text-xl font-bold text-white">Content</h3>
                   </div>
                   <p className="mt-4 text-slate-300">
-                    <span className="font-semibold text-purple-400">Minimum 200 characters</span>
-                    . Provide detailed explanations with examples, use cases, and
-                    practical applications. The more comprehensive, the better!
+                    <span className="font-semibold text-purple-400">Minimum 200 characters</span>.
+                    Provide detailed explanations with examples, use cases, and practical
+                    applications. The more comprehensive, the better!
                   </p>
                 </div>
               </div>
@@ -365,9 +332,7 @@ const Guidelines = () => {
 
               <div className="mt-12 space-y-6">
                 <div className="rounded-2xl border border-slate-700 bg-slate-900/40 p-6">
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    ✓ Include in Your Post:
-                  </h3>
+                  <h3 className="text-xl font-bold text-white mb-4">✓ Include in Your Post:</h3>
                   <ul className="space-y-3 text-slate-300">
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-green-400">•</span>
@@ -379,15 +344,15 @@ const Guidelines = () => {
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-green-400">•</span>
                       <span>
-                        <strong className="text-white">How It Works:</strong> Explain the
-                        underlying mechanism or concept behind the term.
+                        <strong className="text-white">How It Works:</strong> Explain the underlying
+                        mechanism or concept behind the term.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-green-400">•</span>
                       <span>
-                        <strong className="text-white">Use Cases:</strong> Describe when and
-                        where this term is commonly used in real-world scenarios.
+                        <strong className="text-white">Use Cases:</strong> Describe when and where
+                        this term is commonly used in real-world scenarios.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
@@ -400,44 +365,42 @@ const Guidelines = () => {
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-green-400">•</span>
                       <span>
-                        <strong className="text-white">Best Practices:</strong> Share tips,
-                        best practices, or common pitfalls related to the term.
+                        <strong className="text-white">Best Practices:</strong> Share tips, best
+                        practices, or common pitfalls related to the term.
                       </span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="rounded-2xl border border-red-500/30 bg-red-900/10 p-6">
-                  <h3 className="text-xl font-bold text-white mb-4">
-                    ✗ Avoid in Your Post:
-                  </h3>
+                  <h3 className="text-xl font-bold text-white mb-4">✗ Avoid in Your Post:</h3>
                   <ul className="space-y-3 text-slate-300">
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-red-400">•</span>
                       <span>
-                        <strong className="text-white">Plagiarism:</strong> Don't copy content
-                        from other sources without proper attribution.
+                        <strong className="text-white">Plagiarism:</strong> Don't copy content from
+                        other sources without proper attribution.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-red-400">•</span>
                       <span>
-                        <strong className="text-white">Spam or Promotional Content:</strong>{" "}
-                        Keep posts educational and avoid self-promotion.
+                        <strong className="text-white">Spam or Promotional Content:</strong> Keep
+                        posts educational and avoid self-promotion.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-red-400">•</span>
                       <span>
-                        <strong className="text-white">Inaccurate Information:</strong> Ensure
-                        all facts are correct and up-to-date.
+                        <strong className="text-white">Inaccurate Information:</strong> Ensure all
+                        facts are correct and up-to-date.
                       </span>
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="mt-1 text-red-400">•</span>
                       <span>
-                        <strong className="text-white">Off-Topic Content:</strong> Stay focused
-                        on technology-related terms and concepts.
+                        <strong className="text-white">Off-Topic Content:</strong> Stay focused on
+                        technology-related terms and concepts.
                       </span>
                     </li>
                   </ul>
@@ -474,16 +437,16 @@ const Guidelines = () => {
                   Posts Not Following Rules Will Be Deleted
                 </p>
                 <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-300">
-                  We maintain high-quality standards to ensure Tech-Terms remains a
-                  valuable resource for the community. Posts that violate our guidelines,
-                  contain inaccurate information, are duplicates, or don't meet the minimum
-                  requirements will be removed without notice. Please review all guidelines
-                  carefully before submitting your post.
+                  We maintain high-quality standards to ensure Tech-Terms remains a valuable
+                  resource for the community. Posts that violate our guidelines, contain inaccurate
+                  information, are duplicates, or don't meet the minimum requirements will be
+                  removed without notice. Please review all guidelines carefully before submitting
+                  your post.
                 </p>
                 <div className="mt-8 rounded-2xl border border-red-500/30 bg-red-900/20 p-6">
                   <p className="text-lg font-semibold text-white">
-                    Remember: Quality over quantity. Take your time to create informative,
-                    accurate, and helpful posts that benefit the entire community.
+                    Remember: Quality over quantity. Take your time to create informative, accurate,
+                    and helpful posts that benefit the entire community.
                   </p>
                 </div>
               </div>

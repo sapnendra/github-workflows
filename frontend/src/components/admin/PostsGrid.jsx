@@ -1,4 +1,4 @@
-import AdminPostCard from "./AdminPostCard";
+import AdminPostCard from './AdminPostCard';
 
 const PostsGrid = ({
   posts = [],
@@ -40,12 +40,9 @@ const PostsGrid = ({
   if (!posts.length) {
     return (
       <div className="rounded-3xl border border-slate-800 bg-slate-950/40 px-6 py-16 text-center text-slate-300">
-        <p className="text-xl font-semibold text-white">
-          Clean slate, great job!
-        </p>
+        <p className="text-xl font-semibold text-white">Clean slate, great job!</p>
         <p className="mt-2 text-slate-400">
-          No posts match the current filters. Try adjusting your search to view
-          more activity.
+          No posts match the current filters. Try adjusting your search to view more activity.
         </p>
       </div>
     );
@@ -94,4 +91,3 @@ const PostsGrid = ({
 };
 
 export default PostsGrid;
-

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Edit = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    title: "",
-    content: "",
+    title: '',
+    content: '',
   });
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
@@ -18,10 +18,10 @@ const Edit = () => {
     const fetchPost = async () => {
       try {
         // Check if user is authenticated
-        const authResponse = await apiInstance.get("/auth/is-auth");
+        const authResponse = await apiInstance.get('/auth/is-auth');
         if (!authResponse.data?.success) {
-          toast.info("Please login to edit posts.");
-          navigate("/login");
+          toast.info('Please login to edit posts.');
+          navigate('/login');
           return;
         }
 
@@ -29,31 +29,31 @@ const Edit = () => {
         const response = await apiInstance.get(`/post/${id}`);
         if (response.data?.success) {
           const post = response.data.post;
-          
+
           // Check if user owns this post
           const userId = authResponse.data.user._id.toString();
           const postUserId = post.user._id.toString();
-          
+
           if (userId !== postUserId) {
-            toast.error("You can only edit your own posts.");
-            navigate("/profile");
+            toast.error('You can only edit your own posts.');
+            navigate('/profile');
             return;
           }
 
           setFormData({
-            title: post.title || "",
-            content: post.content || "",
+            title: post.title || '',
+            content: post.content || '',
           });
         } else {
-          setError(response.data?.message || "Failed to fetch post");
+          setError(response.data?.message || 'Failed to fetch post');
         }
       } catch (err) {
         if (err.response?.status === 401) {
-          toast.info("Please login to edit posts.");
-          navigate("/login");
+          toast.info('Please login to edit posts.');
+          navigate('/login');
         } else if (err.response?.status === 404) {
-          toast.error("Post not found.");
-          navigate("/profile");
+          toast.error('Post not found.');
+          navigate('/profile');
         } else {
           setError(err.response?.data?.message || err.message);
         }
@@ -79,15 +79,13 @@ const Edit = () => {
     try {
       const response = await apiInstance.put(`/post/edit/${id}`, formData);
       if (response.data.success) {
-        toast.success(response.data.message || "Post updated successfully");
-        navigate("/profile");
+        toast.success(response.data.message || 'Post updated successfully');
+        navigate('/profile');
       } else {
-        toast.error(response.data.message || "Failed to update post");
+        toast.error(response.data.message || 'Failed to update post');
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Failed to update post. Please try again."
-      );
+      toast.error(error.response?.data?.message || 'Failed to update post. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -110,7 +108,7 @@ const Edit = () => {
           <p className="text-xl font-semibold">Something went wrong</p>
           <p className="mt-2 text-lg text-red-200">{error}</p>
           <button
-            onClick={() => navigate("/profile")}
+            onClick={() => navigate('/profile')}
             className="mt-4 rounded-xl bg-red-500 px-6 py-2 font-semibold text-white transition hover:bg-red-400"
           >
             Back to Profile
@@ -136,16 +134,9 @@ const Edit = () => {
         </div>
 
         <div className="rounded-3xl border border-slate-800 bg-slate-900/70 p-6 shadow-2xl backdrop-blur sm:p-10">
-          <form
-            autoComplete="off"
-            className="flex flex-col gap-6"
-            onSubmit={handleFormSubmit}
-          >
+          <form autoComplete="off" className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
             <div className="space-y-2">
-              <label
-                htmlFor="title"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="title" className="text-lg font-semibold text-slate-200">
                 Title
               </label>
               <input
@@ -161,10 +152,7 @@ const Edit = () => {
             </div>
 
             <div className="space-y-2">
-              <label
-                htmlFor="content"
-                className="text-lg font-semibold text-slate-200"
-              >
+              <label htmlFor="content" className="text-lg font-semibold text-slate-200">
                 Content
               </label>
               <textarea
@@ -179,16 +167,14 @@ const Edit = () => {
               />
               <p className="text-sm text-slate-400">
                 {formData.content.length}/200 minimum characters
-                {formData.content.length >= 200 && (
-                  <span className="ml-2 text-green-400">✓</span>
-                )}
+                {formData.content.length >= 200 && <span className="ml-2 text-green-400">✓</span>}
               </p>
             </div>
 
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-end">
               <button
                 type="button"
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate('/profile')}
                 className="rounded-2xl border border-slate-600 bg-slate-800/50 px-6 py-3 text-lg font-semibold text-slate-200 transition hover:bg-slate-800"
               >
                 Cancel
@@ -198,7 +184,7 @@ const Edit = () => {
                 disabled={loading || formData.content.length < 200}
                 className="rounded-2xl bg-indigo-500 px-6 py-3 text-lg font-semibold text-white transition hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {loading ? "Updating..." : "Update Post"}
+                {loading ? 'Updating...' : 'Update Post'}
               </button>
             </div>
           </form>

@@ -1,23 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const sortOptions = [
-  { label: "Newest first", value: "date", order: "desc" },
-  { label: "Oldest first", value: "date", order: "asc" },
-  { label: "Title (A-Z)", value: "title", order: "asc" },
-  { label: "Most liked", value: "likes", order: "desc" },
+  { label: 'Newest first', value: 'date', order: 'desc' },
+  { label: 'Oldest first', value: 'date', order: 'asc' },
+  { label: 'Title (A-Z)', value: 'title', order: 'asc' },
+  { label: 'Most liked', value: 'likes', order: 'desc' },
 ];
 
-const DashboardFilters = ({
-  filters,
-  onSearch,
-  onSortChange,
-  onOrderToggle,
-  onLimitChange,
-}) => {
-  const [searchValue, setSearchValue] = useState(filters.search || "");
+const DashboardFilters = ({ filters, onSearch, onSortChange, onOrderToggle, onLimitChange }) => {
+  const [searchValue, setSearchValue] = useState(filters.search || '');
 
   useEffect(() => {
-    setSearchValue(filters.search || "");
+    setSearchValue(filters.search || '');
   }, [filters.search]);
 
   const handleSubmit = (event) => {
@@ -27,20 +21,15 @@ const DashboardFilters = ({
 
   const currentSortLabel =
     sortOptions.find(
-      (option) =>
-        option.value === filters.sortBy && option.order === filters.sortOrder
-    )?.label || "Custom view";
+      (option) => option.value === filters.sortBy && option.order === filters.sortOrder,
+    )?.label || 'Custom view';
 
   return (
     <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-sm uppercase tracking-widest text-slate-400">
-            Filters
-          </p>
-          <h2 className="text-2xl font-semibold text-white">
-            {currentSortLabel}
-          </h2>
+          <p className="text-sm uppercase tracking-widest text-slate-400">Filters</p>
+          <h2 className="text-2xl font-semibold text-white">{currentSortLabel}</h2>
           <p className="mt-1 text-sm text-slate-400">
             Showing page {filters.page} of {filters.totalPages || 1}
           </p>
@@ -48,33 +37,33 @@ const DashboardFilters = ({
         <div className="flex flex-wrap gap-3 text-sm">
           <button
             type="button"
-            onClick={() => onSortChange("date")}
+            onClick={() => onSortChange('date')}
             className={`rounded-full border px-4 py-2 ${
-              filters.sortBy === "date"
-                ? "border-indigo-500/70 bg-indigo-500/10 text-indigo-100"
-                : "border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100"
+              filters.sortBy === 'date'
+                ? 'border-indigo-500/70 bg-indigo-500/10 text-indigo-100'
+                : 'border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100'
             }`}
           >
             Date
           </button>
           <button
             type="button"
-            onClick={() => onSortChange("title")}
+            onClick={() => onSortChange('title')}
             className={`rounded-full border px-4 py-2 ${
-              filters.sortBy === "title"
-                ? "border-indigo-500/70 bg-indigo-500/10 text-indigo-100"
-                : "border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100"
+              filters.sortBy === 'title'
+                ? 'border-indigo-500/70 bg-indigo-500/10 text-indigo-100'
+                : 'border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100'
             }`}
           >
             Title
           </button>
           <button
             type="button"
-            onClick={() => onSortChange("likes")}
+            onClick={() => onSortChange('likes')}
             className={`rounded-full border px-4 py-2 ${
-              filters.sortBy === "likes"
-                ? "border-indigo-500/70 bg-indigo-500/10 text-indigo-100"
-                : "border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100"
+              filters.sortBy === 'likes'
+                ? 'border-indigo-500/70 bg-indigo-500/10 text-indigo-100'
+                : 'border-slate-700 text-slate-300 hover:border-indigo-500/60 hover:text-indigo-100'
             }`}
           >
             Likes
@@ -84,7 +73,7 @@ const DashboardFilters = ({
             onClick={onOrderToggle}
             className="rounded-full border border-slate-700 px-4 py-2 text-slate-200 transition hover:border-indigo-500/70 hover:text-indigo-100"
           >
-            {filters.sortOrder === "asc" ? "Ascending" : "Descending"}
+            {filters.sortOrder === 'asc' ? 'Ascending' : 'Descending'}
           </button>
           <select
             value={filters.limit}
@@ -100,10 +89,7 @@ const DashboardFilters = ({
         </div>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="mt-6 flex flex-col gap-3 md:flex-row"
-      >
+      <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-3 md:flex-row">
         <div className="relative flex-1">
           <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
             <svg
@@ -141,4 +127,3 @@ const DashboardFilters = ({
 };
 
 export default DashboardFilters;
-

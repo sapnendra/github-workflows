@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useEffect, useRef } from 'react';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
   });
   const [submitting, setSubmitting] = useState(false);
   const quoteRef = useRef(null);
@@ -21,22 +21,22 @@ const Contact = () => {
   useEffect(() => {
     // Quote animation
     if (quoteRef.current) {
-      gsap.from(quoteRef.current.querySelectorAll(".quote-text"), {
+      gsap.from(quoteRef.current.querySelectorAll('.quote-text'), {
         opacity: 0,
         y: 30,
         duration: 1,
         stagger: 0.2,
-        ease: "power3.out",
+        ease: 'power3.out',
       });
     }
 
     // Form animation
     if (formRef.current) {
-      const formItems = formRef.current.querySelectorAll(".form-item");
+      const formItems = formRef.current.querySelectorAll('.form-item');
       if (formItems && formItems.length > 0) {
         // Set initial state
         gsap.set(formItems, { opacity: 0 });
-        
+
         // Check if already in view
         const checkView = () => {
           if (formRef.current) {
@@ -48,27 +48,27 @@ const Contact = () => {
                 opacity: 1,
                 duration: 0.8,
                 stagger: 0.2,
-                ease: "power3.out",
+                ease: 'power3.out',
               });
             }
           }
         };
-        
+
         // ScrollTrigger animation
         ScrollTrigger.create({
           trigger: formRef.current,
-          start: "top 80%",
+          start: 'top 80%',
           onEnter: () => {
             gsap.to(formItems, {
               opacity: 1,
               duration: 0.8,
               stagger: 0.2,
-              ease: "power3.out",
+              ease: 'power3.out',
             });
           },
           once: true,
         });
-        
+
         // Check immediately
         setTimeout(checkView, 100);
       }
@@ -89,25 +89,22 @@ const Contact = () => {
     setSubmitting(true);
 
     try {
-      const response = await apiInstance.post("/contact/send", formData);
+      const response = await apiInstance.post('/contact/send', formData);
       if (response.data.success) {
         toast.success(
-          response.data.message || "Thank you for contacting us! We'll get back to you soon."
+          response.data.message || "Thank you for contacting us! We'll get back to you soon.",
         );
         setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: "",
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
         });
       } else {
-        toast.error(response.data.message || "Failed to send message. Please try again.");
+        toast.error(response.data.message || 'Failed to send message. Please try again.');
       }
     } catch (error) {
-      toast.error(
-        error.response?.data?.message ||
-          "Something went wrong. Please try again later."
-      );
+      toast.error(error.response?.data?.message || 'Something went wrong. Please try again later.');
     } finally {
       setSubmitting(false);
     }
@@ -129,17 +126,15 @@ const Contact = () => {
               </p>
               <blockquote className="quote-text mt-8">
                 <p className="text-3xl font-bold italic text-white sm:text-4xl lg:text-3xl">
-                  "The best way to find out if you can trust somebody is to trust
-                  them."
+                  "The best way to find out if you can trust somebody is to trust them."
                 </p>
                 <footer className="quote-text mt-6 text-xl text-slate-300">
                   — Ernest Hemingway
                 </footer>
               </blockquote>
               <p className="quote-text mx-auto mt-8 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
-                Have a question, suggestion, or just want to connect? We'd love
-                to hear from you. Reach out and let's build something amazing
-                together.
+                Have a question, suggestion, or just want to connect? We'd love to hear from you.
+                Reach out and let's build something amazing together.
               </p>
             </div>
           </div>
@@ -157,21 +152,13 @@ const Contact = () => {
                   Send us a Message
                 </h2>
                 <p className="mt-4 text-lg text-slate-400">
-                  Fill out the form below and we'll get back to you as soon as
-                  possible.
+                  Fill out the form below and we'll get back to you as soon as possible.
                 </p>
               </div>
 
-              <form
-                autoComplete="off"
-                className="flex flex-col gap-6"
-                onSubmit={handleFormSubmit}
-              >
+              <form autoComplete="off" className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
                 <div className="form-item space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="text-lg font-semibold text-slate-200"
-                  >
+                  <label htmlFor="name" className="text-lg font-semibold text-slate-200">
                     Full Name
                   </label>
                   <input
@@ -187,10 +174,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-item space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-lg font-semibold text-slate-200"
-                  >
+                  <label htmlFor="email" className="text-lg font-semibold text-slate-200">
                     Email Address
                   </label>
                   <input
@@ -206,10 +190,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-item space-y-2">
-                  <label
-                    htmlFor="subject"
-                    className="text-lg font-semibold text-slate-200"
-                  >
+                  <label htmlFor="subject" className="text-lg font-semibold text-slate-200">
                     Subject
                   </label>
                   <input
@@ -225,10 +206,7 @@ const Contact = () => {
                 </div>
 
                 <div className="form-item space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-lg font-semibold text-slate-200"
-                  >
+                  <label htmlFor="message" className="text-lg font-semibold text-slate-200">
                     Message
                   </label>
                   <textarea
@@ -248,7 +226,7 @@ const Contact = () => {
                   disabled={submitting}
                   className="w-full rounded-2xl bg-indigo-500 px-6 py-4 text-xl font-semibold text-white cursor-pointer transition hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {submitting ? "Sending..." : "Send Message"}
+                  {submitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             </div>

@@ -9,22 +9,16 @@ const SpotlightList = ({ title, items, emptyText }) => (
             className="rounded-2xl border border-slate-800/60 bg-slate-900/60 p-4 text-sm text-slate-300"
           >
             <div className="flex items-center justify-between gap-4">
-              <p className="text-base font-semibold text-white">
-                {item.title}
-              </p>
-              {typeof item.likesCount === "number" && (
+              <p className="text-base font-semibold text-white">{item.title}</p>
+              {typeof item.likesCount === 'number' && (
                 <span className="rounded-full border border-indigo-500/60 px-3 py-1 text-xs text-indigo-100">
                   {item.likesCount} likes
                 </span>
               )}
             </div>
-            <p className="mt-1 text-slate-400">
-              {item.author?.name || "Unknown author"}
-            </p>
+            <p className="mt-1 text-slate-400">{item.author?.name || 'Unknown author'}</p>
             {item.date && (
-              <p className="text-xs text-slate-500">
-                {new Date(item.date).toLocaleDateString()}
-              </p>
+              <p className="text-xs text-slate-500">{new Date(item.date).toLocaleDateString()}</p>
             )}
           </li>
         ))
@@ -58,4 +52,3 @@ const SpotlightSection = ({ spotlight }) => {
 };
 
 export default SpotlightSection;
-

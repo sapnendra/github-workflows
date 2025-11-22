@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import apiInstance from "../apiInstance";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
+import React, { useEffect, useState } from 'react';
+import apiInstance from '../apiInstance';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -16,10 +16,10 @@ const Profile = () => {
     const checkAuthAndFetchData = async () => {
       try {
         // Check if user is authenticated
-        const authResponse = await apiInstance.get("/auth/is-auth");
+        const authResponse = await apiInstance.get('/auth/is-auth');
         if (!authResponse.data?.success) {
-          toast.info("Please login to view your profile.");
-          navigate("/login");
+          toast.info('Please login to view your profile.');
+          navigate('/login');
           return;
         }
 
@@ -27,14 +27,14 @@ const Profile = () => {
         setUser(authResponse.data.user);
 
         // Fetch user's posts
-        const postsResponse = await apiInstance.get("/post/user-posts");
+        const postsResponse = await apiInstance.get('/post/user-posts');
         if (postsResponse.data?.success) {
           setPosts(postsResponse.data.post || []);
         }
       } catch (err) {
         if (err.response?.status === 401) {
-          toast.info("Please login to view your profile.");
-          navigate("/login");
+          toast.info('Please login to view your profile.');
+          navigate('/login');
         } else {
           setError(err.response?.data?.message || err.message);
         }
@@ -47,7 +47,7 @@ const Profile = () => {
   }, [navigate]);
 
   const handleDelete = async (postId) => {
-    if (!window.confirm("Are you sure you want to delete this post?")) {
+    if (!window.confirm('Are you sure you want to delete this post?')) {
       return;
     }
 
@@ -55,14 +55,14 @@ const Profile = () => {
     try {
       const response = await apiInstance.delete(`/post/delete/${postId}`);
       if (response.data?.success) {
-        toast.success(response.data.message || "Post deleted successfully");
+        toast.success(response.data.message || 'Post deleted successfully');
         // Remove the deleted post from the list
         setPosts((prev) => prev.filter((post) => post._id !== postId));
       } else {
-        toast.error(response.data?.message || "Failed to delete post");
+        toast.error(response.data?.message || 'Failed to delete post');
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || "Failed to delete post");
+      toast.error(err.response?.data?.message || 'Failed to delete post');
     } finally {
       setDeletingId(null);
     }
@@ -103,11 +103,9 @@ const Profile = () => {
               Your Profile
             </p>
             <h1 className="text-4xl font-bold text-white sm:text-5xl">
-              Welcome back, <span className="text-indigo-400">{user?.name || "User"}</span>
+              Welcome back, <span className="text-indigo-400">{user?.name || 'User'}</span>
             </h1>
-            <p className="text-lg text-slate-400">
-              Manage your posts and profile here.
-            </p>
+            <p className="text-lg text-slate-400">Manage your posts and profile here.</p>
           </div>
 
           <div className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6 shadow-2xl shadow-slate-900/40 sm:p-8">
@@ -116,17 +114,13 @@ const Profile = () => {
                 <label className="text-sm font-semibold uppercase tracking-widest text-slate-400">
                   Name
                 </label>
-                <p className="mt-2 text-xl font-semibold text-white">
-                  {user?.name || "N/A"}
-                </p>
+                <p className="mt-2 text-xl font-semibold text-white">{user?.name || 'N/A'}</p>
               </div>
               <div>
                 <label className="text-sm font-semibold uppercase tracking-widest text-slate-400">
                   Email
                 </label>
-                <p className="mt-2 text-xl font-semibold text-white">
-                  {user?.email || "N/A"}
-                </p>
+                <p className="mt-2 text-xl font-semibold text-white">{user?.email || 'N/A'}</p>
               </div>
             </div>
           </div>
@@ -134,16 +128,14 @@ const Profile = () => {
 
         {/* User's Posts Section */}
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-6 text-2xl font-bold text-white">
-            Your Posts ({posts.length})
-          </h2>
+          <h2 className="mb-6 text-2xl font-bold text-white">Your Posts ({posts.length})</h2>
 
           {posts.length === 0 ? (
             <div className="rounded-3xl border border-slate-800 bg-slate-900/40 px-6 py-12 text-center text-slate-300">
               <p className="text-lg">
-                You haven't created any posts yet.{" "}
+                You haven't created any posts yet.{' '}
                 <button
-                  onClick={() => navigate("/create-post")}
+                  onClick={() => navigate('/create-post')}
                   className="font-semibold text-indigo-400 underline-offset-4 transition hover:text-indigo-300 hover:underline"
                 >
                   Create your first post
@@ -160,21 +152,17 @@ const Profile = () => {
                   <div className="flex items-center justify-between text-sm text-slate-400">
                     <span>
                       {new Date(post.date).toLocaleDateString(undefined, {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
                       })}
                     </span>
                     <span className="rounded-full border border-slate-800 px-3 py-1 text-xs uppercase tracking-widest text-slate-300">
                       Tech-Terms
                     </span>
                   </div>
-                  <h2 className="mt-4 text-2xl font-bold text-white">
-                    {post.title}
-                  </h2>
-                  <p className="mt-3 flex-1 text-lg text-slate-300">
-                    {post.content}
-                  </p>
+                  <h2 className="mt-4 text-2xl font-bold text-white">{post.title}</h2>
+                  <p className="mt-3 flex-1 text-lg text-slate-300">{post.content}</p>
                   <div className="mt-6 flex flex-wrap gap-4">
                     <button
                       type="button"
