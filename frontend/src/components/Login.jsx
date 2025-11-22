@@ -148,7 +148,7 @@ const Login = () => {
               </p>
             </div>
 
-            <button className="w-full rounded-xl bg-indigo-500 px-6 py-3 text-2xl font-semibold text-white transition hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-300">
+            <button className="w-full rounded-xl bg-indigo-500 px-6 py-3 text-2xl font-semibold text-white transition hover:bg-indigo-400 focus-visible:outline focus-visible:outline-offset-4 focus-visible:outline-indigo-300">
               Login
             </button>
 
