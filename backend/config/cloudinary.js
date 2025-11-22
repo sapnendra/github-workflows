@@ -1,5 +1,5 @@
-import { v2 as cloudinary } from "cloudinary";
-import dotenv from "dotenv";
+import { v2 as cloudinary } from 'cloudinary';
+import dotenv from 'dotenv';
 dotenv.config();
 const connectCloudinary = async () => {
   try {
@@ -9,7 +9,7 @@ const connectCloudinary = async () => {
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
   } catch (error) {
-    console.log("error occur in cloudinary", error);
+    console.log('error occur in cloudinary', error);
   }
 };
 

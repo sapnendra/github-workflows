@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const contactFormSchema = new mongoose.Schema(
   {
@@ -8,8 +8,8 @@ const contactFormSchema = new mongoose.Schema(
     message: { type: String, required: true },
     date: { type: Date, default: Date.now },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-const ContactForm = mongoose.model("ContactForm", contactFormSchema);
+const ContactForm = mongoose.model('ContactForm', contactFormSchema);
 export default ContactForm;

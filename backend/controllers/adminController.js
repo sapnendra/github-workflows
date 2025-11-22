@@ -1,27 +1,26 @@
-import Post from "../models/postModel.js";
-import User from "../models/userModel.js";
+import Post from '../models/postModel.js';
+import User from '../models/userModel.js';
 
-const userCollection =
-  User.collection?.collectionName || User.collection?.name || "users";
+const userCollection = User.collection?.collectionName || User.collection?.name || 'users';
 
 const buildMatchFilter = (search) => {
   if (!search) return {};
 
   return {
     $or: [
-      { title: { $regex: search, $options: "i" } },
-      { content: { $regex: search, $options: "i" } },
+      { title: { $regex: search, $options: 'i' } },
+      { content: { $regex: search, $options: 'i' } },
     ],
   };
 };
 
 const buildSortStage = (sortBy, sortOrder) => {
-  const direction = sortOrder === "asc" ? 1 : -1;
+  const direction = sortOrder === 'asc' ? 1 : -1;
 
   switch (sortBy) {
-    case "title":
+    case 'title':
       return { title: direction };
-    case "likes":
+    case 'likes':
       return { likesCount: direction, date: -1 };
     default:
       return { date: direction };
@@ -30,13 +29,7 @@ const buildSortStage = (sortBy, sortOrder) => {
 
 export const getAdminDashboard = async (req, res) => {
   try {
-    const {
-      page = 1,
-      limit = 12,
-      search = "",
-      sortBy = "date",
-      sortOrder = "desc",
-    } = req.query;
+    const { page = 1, limit = 12, search = '', sortBy = 'date', sortOrder = 'desc' } = req.query;
 
     const pageNumber = Math.max(parseInt(page, 10) || 1, 1);
     const limitNumber = Math.min(Math.max(parseInt(limit, 10) || 12, 1), 50);
@@ -49,20 +42,20 @@ export const getAdminDashboard = async (req, res) => {
       {
         $lookup: {
           from: userCollection,
-          localField: "user",
-          foreignField: "_id",
-          as: "author",
+          localField: 'user',
+          foreignField: '_id',
+          as: 'author',
         },
       },
       {
         $unwind: {
-          path: "$author",
+          path: '$author',
           preserveNullAndEmptyArrays: true,
         },
       },
       {
         $addFields: {
-          likesCount: { $size: { $ifNull: ["$likes", []] } },
+          likesCount: { $size: { $ifNull: ['$likes', []] } },
         },
       },
       {
@@ -71,9 +64,9 @@ export const getAdminDashboard = async (req, res) => {
           content: 1,
           date: 1,
           likesCount: 1,
-          "author._id": 1,
-          "author.name": 1,
-          "author.email": 1,
+          'author._id': 1,
+          'author.name': 1,
+          'author.email': 1,
         },
       },
       { $sort: sortStage },
@@ -89,15 +82,15 @@ export const getAdminDashboard = async (req, res) => {
     const formattedPosts = posts.map((post) => {
       const previewLimit = 160;
       const preview =
-        (post.content || "").slice(0, previewLimit).trimEnd() +
-        ((post.content || "").length > previewLimit ? "..." : "");
+        (post.content || '').slice(0, previewLimit).trimEnd() +
+        ((post.content || '').length > previewLimit ? '...' : '');
 
       return {
         id: post._id,
         title: post.title,
         author: {
-          name: post.author?.name || "Unknown",
-          email: post.author?.email || "N/A",
+          name: post.author?.name || 'Unknown',
+          email: post.author?.email || 'N/A',
         },
         publishedOn: post.date,
         likesCount: post.likesCount,
@@ -109,99 +102,93 @@ export const getAdminDashboard = async (req, res) => {
       };
     });
 
-    const [
-      totalUsers,
-      likesAggregation,
-      activeAuthors,
-      recentPosts,
-      topLikedPosts,
-    ] = await Promise.all([
-      User.countDocuments(),
-      Post.aggregate([
-        {
-          $project: {
-            likesCount: { $size: { $ifNull: ["$likes", []] } },
+    const [totalUsers, likesAggregation, activeAuthors, recentPosts, topLikedPosts] =
+      await Promise.all([
+        User.countDocuments(),
+        Post.aggregate([
+          {
+            $project: {
+              likesCount: { $size: { $ifNull: ['$likes', []] } },
+            },
           },
-        },
-        {
-          $group: {
-            _id: null,
-            totalLikes: { $sum: "$likesCount" },
+          {
+            $group: {
+              _id: null,
+              totalLikes: { $sum: '$likesCount' },
+            },
           },
-        },
-      ]),
-      Post.distinct("user"),
-      Post.aggregate([
-        {
-          $lookup: {
-            from: userCollection,
-            localField: "user",
-            foreignField: "_id",
-            as: "author",
+        ]),
+        Post.distinct('user'),
+        Post.aggregate([
+          {
+            $lookup: {
+              from: userCollection,
+              localField: 'user',
+              foreignField: '_id',
+              as: 'author',
+            },
           },
-        },
-        {
-          $unwind: {
-            path: "$author",
-            preserveNullAndEmptyArrays: true,
+          {
+            $unwind: {
+              path: '$author',
+              preserveNullAndEmptyArrays: true,
+            },
           },
-        },
-        {
-          $addFields: {
-            likesCount: { $size: { $ifNull: ["$likes", []] } },
+          {
+            $addFields: {
+              likesCount: { $size: { $ifNull: ['$likes', []] } },
+            },
           },
-        },
-        { $sort: { date: -1 } },
-        { $limit: 5 },
-        {
-          $project: {
-            title: 1,
-            date: 1,
-            likesCount: 1,
-            "author.name": 1,
+          { $sort: { date: -1 } },
+          { $limit: 5 },
+          {
+            $project: {
+              title: 1,
+              date: 1,
+              likesCount: 1,
+              'author.name': 1,
+            },
           },
-        },
-      ]),
-      Post.aggregate([
-        {
-          $addFields: {
-            likesCount: { $size: { $ifNull: ["$likes", []] } },
+        ]),
+        Post.aggregate([
+          {
+            $addFields: {
+              likesCount: { $size: { $ifNull: ['$likes', []] } },
+            },
           },
-        },
-        { $sort: { likesCount: -1, date: -1 } },
-        { $limit: 3 },
-        {
-          $lookup: {
-            from: userCollection,
-            localField: "user",
-            foreignField: "_id",
-            as: "author",
+          { $sort: { likesCount: -1, date: -1 } },
+          { $limit: 3 },
+          {
+            $lookup: {
+              from: userCollection,
+              localField: 'user',
+              foreignField: '_id',
+              as: 'author',
+            },
           },
-        },
-        {
-          $unwind: {
-            path: "$author",
-            preserveNullAndEmptyArrays: true,
+          {
+            $unwind: {
+              path: '$author',
+              preserveNullAndEmptyArrays: true,
+            },
           },
-        },
-        {
-          $project: {
-            title: 1,
-            date: 1,
-            likesCount: 1,
-            "author.name": 1,
+          {
+            $project: {
+              title: 1,
+              date: 1,
+              likesCount: 1,
+              'author.name': 1,
+            },
           },
-        },
-      ]),
-    ]);
+        ]),
+      ]);
 
     const totalLikes = likesAggregation[0]?.totalLikes || 0;
-    const averageLikes =
-      totalPosts === 0 ? 0 : Number((totalLikes / totalPosts).toFixed(1));
+    const averageLikes = totalPosts === 0 ? 0 : Number((totalLikes / totalPosts).toFixed(1));
 
     return res.status(200).json({
       success: true,
-      message: "Admin dashboard data fetched successfully",
+      message: 'Admin dashboard data fetched successfully',
       stats: {
         totalPosts,
         totalUsers,
@@ -225,9 +212,7 @@ export const getAdminDashboard = async (req, res) => {
     });
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json({ success: false, message: "Failed to load dashboard data" });
+    return res.status(500).json({ success: false, message: 'Failed to load dashboard data' });
   }
 };
 
@@ -237,23 +222,18 @@ export const adminDeletePost = async (req, res) => {
     const post = await Post.findById(id);
 
     if (!post) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Post not found" });
+      return res.status(404).json({ success: false, message: 'Post not found' });
     }
 
     await Post.findByIdAndDelete(id);
 
     return res.status(200).json({
       success: true,
-      message: "Post removed from the platform",
+      message: 'Post removed from the platform',
       deletedPostId: id,
     });
   } catch (error) {
     console.log(error.message);
-    return res
-      .status(500)
-      .json({ success: false, message: "Failed to delete post" });
+    return res.status(500).json({ success: false, message: 'Failed to delete post' });
   }
 };
-
