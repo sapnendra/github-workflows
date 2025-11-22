@@ -15,7 +15,6 @@ import Footer from "./components/Footer";
 import AdminDashboard from "./pages/AdminDashboard";
 
 const App = () => {
-  let ansap = "asap";
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Navbar />
