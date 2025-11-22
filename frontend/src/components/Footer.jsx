@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import apiInstance from "../apiInstance";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
@@ -19,6 +18,7 @@ const Footer = () => {
       toast.success("Thank you for subscribing to Tech-Terms updates!");
       setEmail("");
     } catch (error) {
+      console.error("Subscription error:", error);
       toast.error("Failed to subscribe. Please try again.");
     } finally {
       setSubmitting(false);

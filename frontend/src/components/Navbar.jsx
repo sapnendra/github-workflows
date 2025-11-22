@@ -28,6 +28,7 @@ export default function Navbar() {
         setUser(null);
       }
     } catch (error) {
+      console.error("Auth check error:", error);
       setIsAuthenticated(false);
       setUser(null);
     }
@@ -49,6 +50,7 @@ export default function Navbar() {
       toast.success("Logged out successfully");
       navigate("/");
     } catch (error) {
+      console.error("Logout error:", error);
       toast.error("Failed to logout");
     }
   };

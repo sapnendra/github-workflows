@@ -23,7 +23,14 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      ...js.configs.recommended.rules,                                // includes eslint:recommended rules
+      ...reactHooks.configs['recommended-latest'].rules,              // includes react-hooks/recommended rules
+      ...reactRefresh.configs.vite.rules,                             // includes react-refresh/vite rules
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],  // allow unused vars that start with uppercase or underscore
+      "react-refresh/only-export-components": [                       // customize react-refresh rule
+        "warn",                                                       // warn when non-component is exported
+        { allowConstantExport: true }                                 // allow export const MyComponent = () => {}
+      ],
     },
   },
 ])

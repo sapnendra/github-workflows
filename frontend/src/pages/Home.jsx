@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import apiInstance from "../apiInstance";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ const Home = () => {
     fetchAuthState();
   }, []);
 
-  const handleLikeToggle = async (postId) => {
+  const handleLikeToggle = useCallback(async (postId) => {
     setLikingId(postId);
     try {
       const { data } = await apiInstance.get(`/post/like/${postId}`);
@@ -63,7 +63,7 @@ const Home = () => {
     } finally {
       setLikingId(null);
     }
-  };
+  }, [navigate]);
 
   const filteredAndPaginatedPosts = useMemo(() => {
     // Filter posts by search query
@@ -223,6 +223,8 @@ const Home = () => {
     likingId,
     filteredAndPaginatedPosts,
     searchQuery,
+    currentPage,
+    handleLikeToggle,
   ]);
 
   return (
