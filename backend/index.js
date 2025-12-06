@@ -21,7 +21,7 @@ connectCloudinary();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://13.53.193.5:5173',
+    origin: 'http://localhost:5173',
     credentials: true,
   }),
 );
